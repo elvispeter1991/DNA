@@ -1,0 +1,385 @@
+/* =========================================
+   1. CSS Variables & Reset
+   ========================================= */
+:root {
+  --bg-main: #fcfcfc;
+  --bg-secondary: #f5f5f7;
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --black: #000000;
+  --white: #ffffff;
+  --wa-green: #25D366;
+  --wa-green-hover: #1ebe59;
+  --radius-md: 12px;
+  --radius-pill: 50px;
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Premium System Font Stack (No Google Fonts) */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   2. Typography
+   ========================================= */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* =========================================
+   3. Navigation (Sticky & Glassmorphism)
+   ========================================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 5%;
+  background: rgba(252, 252, 252, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  color: var(--text-secondary);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+/* =========================================
+   4. Buttons (Pill shaped with hover lifts)
+   ========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: #222;
+}
+
+.btn-whatsapp {
+  background: var(--wa-green);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-whatsapp:hover {
+  background: var(--wa-green-hover);
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   5. Layout & Sections
+   ========================================= */
+main {
+  padding: 6rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: left; /* Or center, depending on preference */
+  padding-bottom: 4rem;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin: 3rem 0;
+  display: block;
+}
+
+/* =========================================
+   6. Image Grid (Examples Page)
+   ========================================= */
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.image-grid img:hover {
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+   7. Footer
+   ========================================= */
+footer {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+footer a {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   8. Mobile Breakpoints
+   ========================================= */
+@media (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  main {
+    padding: 3rem 5%;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  nav a {
+    margin: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem; /* Ensures consistent spacing in the group */
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 1rem; /* Fallback margin to prevent overlap */
+  }
+
+  
+}
+
+/* =========================================
+   9. How It Works (Steps List)
+   ========================================= */
+.steps-list {
+  list-style: none;
+  counter-reset: steps;
+  margin-bottom: 3rem;
+  padding: 0;
+}
+
+.steps-list li {
+  position: relative;
+  background: var(--white);
+  margin-bottom: 1rem;
+  padding: 2rem 2rem 2rem 5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  counter-increment: steps;
+  transition: var(--transition);
+}
+
+.steps-list li:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Number Badges inside the cards */
+.steps-list li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 1.5rem;
+  top: 1.75rem;
+  background: var(--black); /* Matches the primary button */
+  color: var(--white);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.steps-list strong {
+  display: block;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* =========================================
+   10. Examples (Card Grid)
+   ========================================= */
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.example-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  background: var(--black); /* Prevents white flash on hover zoom */
+}
+
+.example-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.example-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3/4; /* Standard portrait ratio for booth frames */
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.example-card:hover img {
+  transform: scale(1.05); /* Smooth inner zoom effect */
+}
+
+/* Gradient overlay and text for the event type */
+.example-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
