@@ -1,20 +1,19 @@
 /* =========================================
-   1. CSS Variables & Reset
+   1. CSS Variables & Reset (Dark Theme)
    ========================================= */
 :root {
-  --bg-main: #fcfcfc;
-  --bg-secondary: #f5f5f7;
-  --text-primary: #1d1d1f;
-  --text-secondary: #86868b;
-  --black: #000000;
-  --white: #ffffff;
-  --wa-green: #25D366;
-  --wa-green-hover: #1ebe59;
+  --bg-main: #050505; /* Deep Black */
+  --bg-secondary: #121212; /* Slightly lighter for cards/sections */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --purple-main: #8a2be2;
+  --purple-hover: #9b4dff;
+  --purple-glow: rgba(138, 43, 226, 0.4);
   --radius-md: 12px;
   --radius-pill: 50px;
-  --shadow-sm: 0 4px 6px rgba(0,0,0,0.04);
-  --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --shadow-sm: 0 4px 10px rgba(0,0,0,0.5);
+  --shadow-purple: 0 8px 30px var(--purple-glow);
+  --transition: all 0.3s ease;
 }
 
 * {
@@ -23,363 +22,228 @@
   padding: 0;
 }
 
-/* Premium System Font Stack (No Google Fonts) */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================================
-   2. Typography
+   2. Typography & Globals
    ========================================= */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+h1, h2, h3 {
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  color: var(--text-primary);
 }
 
-p {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; text-align: center; }
+h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+.text-purple { color: var(--purple-main); }
+.text-center { text-align: center; }
 
 /* =========================================
-   3. Navigation (Sticky & Glassmorphism)
+   3. Navigation
    ========================================= */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 5%;
-  background: rgba(252, 252, 252, 0.8);
+  padding: 1rem 5%;
+  background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.logo {
-  font-weight: 800;
-  font-size: 1.25rem;
-  letter-spacing: -0.02em;
-}
+.logo { font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
 
 nav a {
   color: var(--text-primary);
   text-decoration: none;
   margin-left: 2rem;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.9rem;
   transition: var(--transition);
 }
 
-nav a:hover {
-  color: var(--text-secondary);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-primary);
-}
+nav a:hover { color: var(--purple-main); }
 
 /* =========================================
-   4. Buttons (Pill shaped with hover lifts)
+   4. Buttons
    ========================================= */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   text-decoration: none;
   border-radius: var(--radius-pill);
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
   transition: var(--transition);
-  border: 1px solid transparent;
   cursor: pointer;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border: 2px solid transparent;
 }
 
 .btn-primary {
-  background: var(--black);
-  color: var(--white);
+  background: var(--purple-main);
+  color: #ffffff;
+  box-shadow: var(--shadow-purple);
 }
 
 .btn-primary:hover {
-  background: #222;
+  background: var(--purple-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(155, 77, 255, 0.6);
 }
 
-.btn-whatsapp {
-  background: var(--wa-green);
-  color: var(--white);
-  box-shadow: var(--shadow-sm);
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.2);
 }
 
-.btn-whatsapp:hover {
-  background: var(--wa-green-hover);
+.btn-outline:hover {
+  border-color: var(--purple-main);
+  color: var(--purple-main);
 }
 
 .btn-group {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* =========================================
-   5. Layout & Sections
+   5. Hero Section (Uses 4_2.jpg)
    ========================================= */
-main {
-  padding: 6rem 5%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .hero {
-  text-align: left; /* Or center, depending on preference */
-  padding-bottom: 4rem;
-}
-
-.hero img {
-  width: 100%;
-  max-width: 800px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  margin: 3rem 0;
-  display: block;
-}
-
-/* =========================================
-   6. Image Grid (Examples Page)
-   ========================================= */
-.image-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.image-grid img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  cursor: pointer;
-}
-
-.image-grid img:hover {
-  transform: scale(1.02) translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-/* =========================================
-   7. Footer
-   ========================================= */
-footer {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: var(--bg-secondary);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-footer a {
-  color: var(--text-primary);
-  font-weight: 500;
-  margin: 0 1rem;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* =========================================
-   8. Mobile Breakpoints
-   ========================================= */
-@media (min-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  main {
-    padding: 3rem 5%;
-  }
-  
-  .menu-toggle {
-    display: block;
-  }
-  
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 1rem 0;
-    box-shadow: var(--shadow-md);
-  }
-  
-  .nav-links.active {
-    display: flex;
-  }
-  
-  nav a {
-    margin: 1rem 2rem;
-    font-size: 1.1rem;
-  }
-  
-  .btn-group {
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem; /* Ensures consistent spacing in the group */
-  }
-  
-  .btn {
-    width: 100%;
-    margin-bottom: 1rem; /* Fallback margin to prevent overlap */
-  }
-
-  
-}
-
-/* =========================================
-   9. How It Works (Steps List)
-   ========================================= */
-.steps-list {
-  list-style: none;
-  counter-reset: steps;
-  margin-bottom: 3rem;
-  padding: 0;
-}
-
-.steps-list li {
   position: relative;
-  background: var(--white);
-  margin-bottom: 1rem;
-  padding: 2rem 2rem 2rem 5rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  counter-increment: steps;
-  transition: var(--transition);
-}
-
-.steps-list li:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-/* Number Badges inside the cards */
-.steps-list li::before {
-  content: counter(steps);
-  position: absolute;
-  left: 1.5rem;
-  top: 1.75rem;
-  background: var(--black); /* Matches the primary button */
-  color: var(--white);
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
+  background-image: url('4.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 1.1rem;
+  text-align: center;
+  padding: 0 5%;
 }
 
-.steps-list strong {
-  display: block;
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(138, 43, 226, 0.15);
+  color: var(--purple-hover);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--purple-glow);
 }
 
 /* =========================================
-   10. Examples (Card Grid)
+   6. Manifesto Section (Uses 3.jpg)
    ========================================= */
-.image-grid {
+.manifesto-section {
+  background: var(--bg-main);
+  padding: 2rem 5%; /* Reduced padding for a tighter fit */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.manifesto-img {
+  max-width: 100%;
+  width: 500px; /* Reduced significantly to act as a small quote */
+  height: auto;
+  display: block;
+  opacity: 0.85; /* Softens the image slightly to match the aesthetic */
+  transition: var(--transition);
+}
+
+.manifesto-img:hover {
+  opacity: 1; /* Brightens up slightly if the user hovers over it */
+}
+
+/* =========================================
+   7. Grid & Cards
+   ========================================= */
+section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+
+.grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.example-card {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  background: var(--black); /* Prevents white flash on hover zoom */
-}
-
-.example-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-}
-
-.example-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 3/4; /* Standard portrait ratio for booth frames */
-  display: block;
-  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.example-card:hover img {
-  transform: scale(1.05); /* Smooth inner zoom effect */
-}
-
-/* Gradient overlay and text for the event type */
-.example-label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 2rem 1.5rem 1rem 1.5rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
-  color: var(--white);
-  font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
+  margin-top: 3rem;
 }
 
 @media (min-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 }
 
+.card {
+  background: var(--bg-secondary);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--purple-glow);
+  box-shadow: var(--shadow-purple);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* =========================================
+   8. Footer & CTA
+   ========================================= */
+.cta-section {
+  text-align: center;
+  background: var(--bg-secondary);
+  padding: 6rem 5%;
+  border-radius: var(--radius-md);
+  margin-bottom: 4rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 3rem 5%;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
